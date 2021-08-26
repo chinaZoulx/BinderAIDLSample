@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.binderclient">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BinderClient">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".ServerBinderService"
+            android:process=":remote_binder">
+            <intent-filter>
+                <action android:name="android.intent.action.bind.binder"/>
+            </intent-filter>
+        </service>
+
+        <service android:name=".ServerAIDLService"
+            android:process=":remote_aidl">
+            <intent-filter>
+                <action android:name="android.intent.action.bind.aidl"/>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
