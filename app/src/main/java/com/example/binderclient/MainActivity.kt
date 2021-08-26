@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
     val TAG = "Client"
 
-
     var iRemoteService: IRemoteService? = null
     var iBinderService: IBinder? = null
     var binderProxy: BinderProxy? = null
@@ -52,8 +51,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val pkg = "com.example.binderservice"
         val action = "android.intent.action.bind.binder"
-        launcherBinder()
-        launcherAIDL()
+        launcherBinderService()
+        launcherAIDLService()
 
         findViewById<View>(R.id.normalActionTv).setOnClickListener {
             normalBinderInvoke()
@@ -66,13 +65,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun launcherBinder(){
+    fun launcherBinderService(){
         val intent = Intent(MainActivity@ this, ServerBinderService::class.java)
         bindService(intent, binderConn, BIND_AUTO_CREATE)
         Log.e("Client", "Binder Service Launcher")
     }
 
-    fun launcherAIDL(){
+    fun launcherAIDLService(){
         val intent = Intent(MainActivity@ this, ServerAIDLService::class.java)
         bindService(intent, aidlConn, BIND_AUTO_CREATE)
         Log.e("Client", "AIDL Service Launcher")
